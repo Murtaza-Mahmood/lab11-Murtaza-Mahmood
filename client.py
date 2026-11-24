@@ -10,7 +10,6 @@ import sys
 
 HOST, PORT = "127.0.0.1", 50011
 
-
 def main():
     message = sys.argv[1] if len(sys.argv) > 1 else "hello"
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -18,7 +17,6 @@ def main():
         s.sendall(message.encode())
         reply = s.recv(1024)
     print(reply.decode())
-
 
 if __name__ == "__main__":
     main()

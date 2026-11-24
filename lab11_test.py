@@ -9,17 +9,14 @@ import threading
 
 from lab11 import gather_doubled, fastest, echo_once
 
-
 def test_gather_doubled():
     assert asyncio.run(gather_doubled([1, 2, 3, 4])) == [2, 4, 6, 8]
     assert asyncio.run(gather_doubled([])) == []
-
 
 def test_fastest():
     # B has the shortest delay, so it finishes first.
     jobs = [("A", 0.06), ("B", 0.02), ("C", 0.04)]
     assert asyncio.run(fastest(jobs)) == "B"
-
 
 def _start_echo_server():
     """Start a one-shot echo server on a spare port; return the port."""
@@ -38,7 +35,6 @@ def _start_echo_server():
 
     threading.Thread(target=serve, daemon=True).start()
     return port
-
 
 def test_echo_once():
     port = _start_echo_server()
