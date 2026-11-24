@@ -15,7 +15,6 @@ def main():
     server.bind((HOST, PORT))
     server.listen()
     print(f"Listening on {HOST}:{PORT} (Ctrl-C to stop)")
-
     while True:
         conn, addr = server.accept()
         with conn:

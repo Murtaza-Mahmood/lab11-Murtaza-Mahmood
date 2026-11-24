@@ -25,20 +25,17 @@ def _start_echo_server():
     srv.bind(("127.0.0.1", 0))
     srv.listen(1)
     port = srv.getsockname()[1]
-
     def serve():
         conn, _ = srv.accept()
         with conn:
             data = conn.recv(1024)
             conn.sendall(data)
         srv.close()
-
     threading.Thread(target=serve, daemon=True).start()
     return port
 
 def test_echo_once():
     port = _start_echo_server()
     assert echo_once("127.0.0.1", port, "hello") == "hello"
-
     port2 = _start_echo_server()
     assert echo_once("127.0.0.1", port2, "sockets are fun") == "sockets are fun"
